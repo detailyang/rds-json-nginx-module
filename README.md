@@ -265,13 +265,13 @@ You're recommended to install this module (as well as the Nginx core and many ot
 Alternatively, you can install this module manually with the Nginx source:
 
 Grab the nginx source code from [nginx.org](http://nginx.org/), for example,
-the version 1.9.7 (see [nginx compatibility](#compatibility)), and then build the source with this module:
+the version 1.13.6 (see [nginx compatibility](#compatibility)), and then build the source with this module:
 
 ```bash
 
- $ wget 'http://nginx.org/download/nginx-1.9.7.tar.gz'
- $ tar -xzvf nginx-1.9.7.tar.gz
- $ cd nginx-1.9.7/
+ $ wget 'http://nginx.org/download/nginx-1.13.6.tar.gz'
+ $ tar -xzvf nginx-1.13.6.tar.gz
+ $ cd nginx-1.13.6/
 
  # Here we assume you would install you nginx under /opt/nginx/.
  $ ./configure --prefix=/opt/nginx \
@@ -283,6 +283,14 @@ the version 1.9.7 (see [nginx compatibility](#compatibility)), and then build th
 
 Download the latest version of the release tarball of this module from [rds-json-nginx-module file list](https://github.com/openresty/rds-json-nginx-module/tags).
 
+Starting from NGINX 1.9.11, you can also compile this module as a dynamic module, by using the `--add-dynamic-module=PATH` option
+instead of `--add-module=PATH` on the `./configure` command line above.
+And then you can explicitly load the module in your `nginx.conf` via the [load_module](http://nginx.org/en/docs/ngx_core_module.html#load_module) directive, for example,
+
+```nginx
+load_module /path/to/modules/ngx_http_rds_json_filter_module.so;
+```
+
 Also, this module is included and enabled by default in the [OpenResty bundle](http://openresty.org).
 
 [Back to TOC](#table-of-contents)
@@ -291,6 +299,10 @@ Compatibility
 =============
 The following versions of Nginx should work with this module:
 
+* **1.13.x** (last tested: 1.13.6)
+* **1.12.x**
+* **1.11.x** (last tested: 1.11.2)
+* **1.10.x**
 * **1.9.x** (last tested: 1.9.7)
 * **1.8.x**
 * **1.7.x** (last tested: 1.7.10)
